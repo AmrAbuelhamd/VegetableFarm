@@ -45,28 +45,28 @@ class Cell {
         },
         Planted(Color.BLACK) {
             override suspend fun next(cell: Cell) {
-                delay((speed / factor).toLong())
+                delay((500 / factor).toLong())
                 cell.state.value = Green
                 cell.state.value!!.next(cell)
             }
         },
         Green(Color.GREEN) {
             override suspend fun next(cell: Cell) {
-                delay((speed / factor).toLong())
+                delay((700 / factor).toLong())
                 cell.state.value = Immature
                 cell.state.value!!.next(cell)
             }
         },
         Immature(Color.YELLOW, 3) {
             override suspend fun next(cell: Cell) {
-                delay((speed / factor).toLong())
+                delay((900 / factor).toLong())
                 cell.state.value = Mature
                 cell.state.value!!.next(cell)
             }
         },
         Mature(Color.RED, 5) {
             override suspend fun next(cell: Cell) {
-                delay((speed / factor).toLong())
+                delay((1000 / factor).toLong())
                 cell.state.value = Overgrow
             }
         },

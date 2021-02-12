@@ -1,11 +1,12 @@
 package com.blogspot.soyamr.vegetablefarm
 
 import android.view.View
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.android.material.slider.Slider
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class CellViewModel : ViewModel() {
 
@@ -18,12 +19,22 @@ class CellViewModel : ViewModel() {
     private val _money: MutableLiveData<Int> = MutableLiveData(100)
     val money: LiveData<Int> = _money
 
+    private val _day: MutableLiveData<Int> = MutableLiveData(0)
+    val day: LiveData<Int> = _day
+
 
     init {
         for (i in 0..15) {
             val cell = Cell()
             cells.add(cell)
             _cellState.value?.add(cell.state)
+        }
+
+        viewModelScope.launch {
+            while (true) {
+                delay(100)
+                _day.value = _day.value?.plus(1)
+            }
         }
     }
 
@@ -40,6 +51,8 @@ class CellViewModel : ViewModel() {
     }
 
     fun onValueChanged(value: Float) {
+        if (value == 0F)
+            return
         Cell.factor = value
     }
 }
