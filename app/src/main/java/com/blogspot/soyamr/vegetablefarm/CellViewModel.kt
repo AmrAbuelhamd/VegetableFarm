@@ -32,7 +32,7 @@ class CellViewModel : ViewModel() {
 
         viewModelScope.launch {
             while (true) {
-                delay(100)
+                delay((100/Cell.factor).toLong())
                 _day.value = _day.value?.plus(1)
             }
         }
