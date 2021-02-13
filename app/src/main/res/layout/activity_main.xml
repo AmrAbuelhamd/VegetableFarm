@@ -264,7 +264,7 @@
             android:layout_marginBottom="32dp"
             android:stepSize="0.25"
             android:value="1"
-            android:valueFrom="0"
+            android:valueFrom="0.25"
             android:valueTo="2.0"
             app:labelBehavior="withinBounds"
             app:labelStyle="@style/tooltip"

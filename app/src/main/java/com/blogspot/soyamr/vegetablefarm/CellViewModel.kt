@@ -51,8 +51,6 @@ class CellViewModel : ViewModel() {
     }
 
     fun onValueChanged(value: Float) {
-        if (value == 0F)
-            return
         Cell.factor = value
     }
 }
